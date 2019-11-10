@@ -50,86 +50,13 @@ ListItem {
   }
 
   onClicked: {
-    //Workaround: add extra return and > sign to sport articles, as they don't exist in some feeds
-    if (feedListModel.source == "https://feeds.feedburner.com/nossportalgemeen") {
-      //first scroll to top
-      columnFlickable.contentY = 0
-      //then add new information
-      articleTitle.text = title
-      articleDate.text = pubDate
-      articleImage.source = image
-      articleContent.text = content + '<br>&nbsp;&nbsp;> <a href="' + link + '"><font color="#19b6ee">Open dit artikel in uw browser</font></a>'
-      pageStack.push(articlePage)
-    }
-    else if (feedListModel.source == "https://feeds.feedburner.com/nosnieuwspolitiek") {
-      //first scroll to top
-      columnFlickable.contentY = 0
-      //then add new information
-      articleTitle.text = title
-      articleDate.text = pubDate
-      articleImage.source = image
-      articleContent.text = content + '<br>&nbsp;&nbsp;> <a href="' + link + '"><font color="#19b6ee">Open dit artikel in uw browser</font></a>'
-      pageStack.push(articlePage)
-    }
-    else if (feedListModel.source == "https://feeds.feedburner.com/nosnieuwseconomie") {
-      //first scroll to top
-      columnFlickable.contentY = 0
-      //then add new information
-      articleTitle.text = title
-      articleDate.text = pubDate
-      articleImage.source = image
-      articleContent.text = content + '<br>&nbsp;&nbsp;> <a href="' + link + '"><font color="#19b6ee">Open dit artikel in uw browser</font></a>'
-      pageStack.push(articlePage)
-    }
-    else if (feedListModel.source == "https://feeds.feedburner.com/nosnieuwstechnologie") {
-      //first scroll to top
-      columnFlickable.contentY = 0
-      //then add new information
-      articleTitle.text = title
-      articleDate.text = pubDate
-      articleImage.source = image
-      articleContent.text = content + '<br>&nbsp;&nbsp;> <a href="' + link + '"><font color="#19b6ee">Open dit artikel in uw browser</font></a>'
-      pageStack.push(articlePage)
-    }
-    else if (feedListModel.source == "https://feeds.feedburner.com/nosnieuwscultuurenmedia") {
-      //first scroll to top
-      columnFlickable.contentY = 0
-      //then add new information
-      articleTitle.text = title
-      articleDate.text = pubDate
-      articleImage.source = image
-      articleContent.text = content + '<br>&nbsp;&nbsp;> <a href="' + link + '"><font color="#19b6ee">Open dit artikel in uw browser</font></a>'
-      pageStack.push(articlePage)
-    }
-    else if (feedListModel.source == "https://feeds.feedburner.com/nosnieuwsopmerkelijk") {
-      //first scroll to top
-      columnFlickable.contentY = 0
-      //then add new information
-      articleTitle.text = title
-      articleDate.text = pubDate
-      articleImage.source = image
-      articleContent.text = content + '<br>&nbsp;&nbsp;> <a href="' + link + '"><font color="#19b6ee">Open dit artikel in uw browser</font></a>'
-      pageStack.push(articlePage)
-    }
-    else if (feedListModel.source == "https://feeds.feedburner.com/nosnieuwstechnologie") {
-      //first scroll to top
-      columnFlickable.contentY = 0
-      //then add new information
-      articleTitle.text = title
-      articleDate.text = pubDate
-      articleImage.source = image
-      articleContent.text = content + '<br>&nbsp;&nbsp;> <a href="' + link + '"><font color="#19b6ee">Open dit artikel in uw browser</font></a>'
-      pageStack.push(articlePage)
-    }
-    else {
-      //first scroll to top
-      columnFlickable.contentY = 0
-      //then add new information
-      articleTitle.text = title
-      articleDate.text = pubDate
-      articleImage.source = image
-      articleContent.text = content + ' <a href="' + link + '"><font color="#19b6ee">Open dit artikel in uw browser</font></a>'
-      pageStack.push(articlePage)
-    }
+    //first scroll to top
+    columnFlickable.contentY = 0
+    //then add new information
+    articleTitle.text = title
+    articleDate.text = pubDate
+    articleImage.source = image
+    articleContent.text = content + '<br>&nbsp;<br>&nbsp;> <a href="' + link + '"><font color="#19b6ee">Open dit artikel in uw browser</font></a>'
+    pageStack.push(articlePage)
   }
 }

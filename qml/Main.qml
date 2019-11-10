@@ -177,7 +177,19 @@ MainView {
         visible: false
 
         header: PageHeader {
+          z: 2
+          id: articlePageHeader
           title: pageHeader.title
+        }
+
+        // Workaround: prevent users from tapping on image behind header
+        MouseArea {
+          z: 1
+          anchors {
+            fill: articlePageHeader
+            top: parent.top
+            horizontalCenter: parent.horizontalCenter
+          }
         }
 
         // Scrollbar for columnFlickable
@@ -242,11 +254,11 @@ MainView {
               wrapMode: Text.WordWrap
             }
 
-            Label {
+            Text {
               id: articleContent
               width: parent.width - units.gu(4)
-              textSize: Label.Medium
               wrapMode: Text.WordWrap
+              textFormat: Text.RichText
               //Open urls in browser
               onLinkActivated: Qt.openUrlExternally(link)
             }
@@ -255,7 +267,7 @@ MainView {
 
         // Image popup
         Rectangle {
-          z: 2
+          z: 3
           id: imagePopup
           visible: false
 
