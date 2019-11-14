@@ -56,7 +56,7 @@ ListItem {
     articleTitle.text = title
     articleDate.text = pubDate
     articleImage.source = image
-    articleContent.text = content + '<br>&nbsp;<br>&nbsp;> <a href="' + link + '"><font color="#19b6ee">Open dit artikel in uw browser</font></a>'
+    articleContent.text = '<font color="' + theme.palette.normal.baseText + '">' + content + '<br>&nbsp;<br>&nbsp;> </font><a href="' + link + '"><font color="#19b6ee">Open dit artikel in uw browser</font></a>'
     pageStack.push(articlePage)
   }
 }

@@ -254,7 +254,7 @@ MainView {
               wrapMode: Text.WordWrap
             }
 
-            Text {
+            Label {
               id: articleContent
               width: parent.width - units.gu(4)
               wrapMode: Text.WordWrap
