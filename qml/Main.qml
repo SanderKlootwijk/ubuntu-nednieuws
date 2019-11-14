@@ -109,11 +109,11 @@ MainView {
           Action {
             text: {
               if (settings.theme == "Ambiance"){
-                i18n.tr("Nachtmodus")
+                "Nachtmodus"
 
               }
               else {
-                i18n.tr("Dagmodus")
+                "Dagmodus"
               }
             }
             iconSource: {
