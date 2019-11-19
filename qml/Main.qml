@@ -129,16 +129,10 @@ MainView {
               if (settings.theme == "Ambiance"){
                 Theme.name = "Ubuntu.Components.Themes.SuruDark"
                 settings.theme = "SuruDark"
-                // bottomEdge moet geopend en gesloten worden voordat het nieuwe thema is toegepast. Anders toont zich een lege pagina:
-                bottomEdge.commit()
-                bottomEdge.collapse()
               }
               else {
                 Theme.name = "Ubuntu.Components.Themes.Ambiance"
                 settings.theme = "Ambiance"
-                // bottomEdge moet geopend en gesloten worden voordat het nieuwe thema is toegepast. Anders toont zich een lege pagina:
-                bottomEdge.commit()
-                bottomEdge.collapse()
               }
             }
           }
@@ -180,6 +174,28 @@ MainView {
           z: 2
           id: articlePageHeader
           title: pageHeader.title
+
+          ActionBar {
+            anchors {
+              right: parent.right
+              rightMargin: units.gu(1)
+              verticalCenter: parent.verticalCenter
+            }
+
+            numberOfSlots: 1
+
+            /*/ Possible in future: sharepage
+            actions: [
+            Action {
+              text: "Deel"
+              iconName: "share"
+              onTriggered: {
+                pageStack.push(sharePage, false, { "articleUrl" : articleURL.text })
+              }
+            }
+            ]
+            /*/
+          }
         }
 
         // Workaround: prevent users from tapping on image behind header
@@ -250,8 +266,9 @@ MainView {
             Label {
               id: articleDate
               width: parent.width - units.gu(4)
-              textSize: Label.XSmall
+              textSize: Label.Small
               wrapMode: Text.WordWrap
+              color: theme.palette.normal.backgroundSecondaryText
             }
 
             Label {
@@ -261,6 +278,12 @@ MainView {
               textFormat: Text.RichText
               //Open urls in browser
               onLinkActivated: Qt.openUrlExternally(link)
+            }
+
+            // This is only for sharing, that's why it's not visible
+            Label {
+              id: articleURL
+              visible: false
             }
           }
         }

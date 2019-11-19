@@ -30,7 +30,7 @@ ListItem {
       height: parent.height
       anchors {
         top: parent.top
-        right: parent.right
+        left: parent.left
       }
 
       source: image
@@ -40,7 +40,8 @@ ListItem {
       id: containerTitle
       width: parent.width - containerImage.width - units.gu(1)
       anchors {
-        left: parent.left
+        left: containerImage.right
+        leftMargin: units.gu(1)
       }
 
       text: title
@@ -56,6 +57,7 @@ ListItem {
     articleTitle.text = title
     articleDate.text = pubDate
     articleImage.source = image
+    articleURL.text = link
     articleContent.text = '<font color="' + theme.palette.normal.baseText + '">' + content + '<br>&nbsp;<br>&nbsp;> </font><a href="' + link + '"><font color="#19b6ee">Open dit artikel in uw browser</font></a>'
     pageStack.push(articlePage)
   }
