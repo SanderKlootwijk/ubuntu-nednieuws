@@ -144,8 +144,8 @@ MainView {
         id: listView
         anchors {
           fill: parent
-          // Prevent to hide content under header
-          topMargin: units.gu(6)
+          // Dirty hack: reduce space between news items and header
+          topMargin: -units.gu(2.4)
         }
 
         // Scrollbar for listView
@@ -160,7 +160,7 @@ MainView {
 
         // Add pull to refresh
         PullToRefresh {
-          refreshing: listView.model.status === feedListModel.Loading
+          refreshing: listView.model.status === XmlListModel.Loading
           onRefresh: listView.model.reload()
         }
       }
@@ -395,8 +395,8 @@ MainView {
                   feedListModel.source = "https://feeds.feedburner.com/nosjournaal"
                   feedListModel.reload
 
-                  // scroll to top
-                  listView.contentY = 0
+                  // scroll to top; dirty hack -units.gu(8); otherwise it doesn't scroll all the way up
+                  listView.contentY = -units.gu(8)
 
                   // go back to previous page
                   pageStack.pop()
@@ -424,8 +424,8 @@ MainView {
                   feedListModel.source = "https://feeds.feedburner.com/nosnieuwsbinnenland"
                   feedListModel.reload
 
-                  // scroll to top
-                  listView.contentY = 0
+                  // scroll to top; dirty hack -units.gu(8); otherwise it doesn't scroll all the way up
+                  listView.contentY = -units.gu(8)
 
                   // go back to previous page
                   pageStack.pop()
@@ -453,8 +453,8 @@ MainView {
                   feedListModel.source = "https://feeds.feedburner.com/nosnieuwsbuitenland"
                   feedListModel.reload
 
-                  // scroll to top
-                  listView.contentY = 0
+                  // scroll to top; dirty hack -units.gu(8); otherwise it doesn't scroll all the way up
+                  listView.contentY = -units.gu(8)
 
                   // go back to previous page
                   pageStack.pop()
@@ -482,8 +482,8 @@ MainView {
                   feedListModel.source = "https://feeds.feedburner.com/nosnieuwspolitiek"
                   feedListModel.reload
 
-                  // scroll to top
-                  listView.contentY = 0
+                  // scroll to top; dirty hack -units.gu(8); otherwise it doesn't scroll all the way up
+                  listView.contentY = -units.gu(8)
 
                   // go back to previous page
                   pageStack.pop()
@@ -511,8 +511,8 @@ MainView {
                   feedListModel.source = "https://feeds.feedburner.com/nosnieuwseconomie"
                   feedListModel.reload
 
-                  // scroll to top
-                  listView.contentY = 0
+                  // scroll to top; dirty hack -units.gu(8); otherwise it doesn't scroll all the way up
+                  listView.contentY = -units.gu(8)
 
                   // go back to previous page
                   pageStack.pop()
@@ -540,8 +540,8 @@ MainView {
                   feedListModel.source = "https://feeds.feedburner.com/nossportalgemeen"
                   feedListModel.reload
 
-                  // scroll to top
-                  listView.contentY = 0
+                  // scroll to top; dirty hack -units.gu(8); otherwise it doesn't scroll all the way up
+                  listView.contentY = -units.gu(8)
 
                   // go back to previous page
                   pageStack.pop()
@@ -569,8 +569,8 @@ MainView {
                   feedListModel.source = "https://feeds.feedburner.com/nosnieuwskoningshuis"
                   feedListModel.reload
 
-                  // scroll to top
-                  listView.contentY = 0
+                  // scroll to top; dirty hack -units.gu(8); otherwise it doesn't scroll all the way up
+                  listView.contentY = -units.gu(8)
 
                   // go back to previous page
                   pageStack.pop()
@@ -598,8 +598,8 @@ MainView {
                   feedListModel.source = "https://feeds.feedburner.com/nosnieuwstech"
                   feedListModel.reload
 
-                  // scroll to top
-                  listView.contentY = 0
+                  // scroll to top; dirty hack -units.gu(8); otherwise it doesn't scroll all the way up
+                  listView.contentY = -units.gu(8)
 
                   // go back to previous page
                   pageStack.pop()
@@ -627,8 +627,8 @@ MainView {
                   feedListModel.source = "https://feeds.feedburner.com/nosnieuwscultuurenmedia"
                   feedListModel.reload
 
-                  // scroll to top
-                  listView.contentY = 0
+                  // scroll to top; dirty hack -units.gu(8); otherwise it doesn't scroll all the way up
+                  listView.contentY = -units.gu(8)
 
                   // go back to previous page
                   pageStack.pop()
@@ -656,8 +656,8 @@ MainView {
                   feedListModel.source = "https://feeds.feedburner.com/nosnieuwsopmerkelijk"
                   feedListModel.reload
 
-                  // scroll to top
-                  listView.contentY = 0
+                  // scroll to top; dirty hack -units.gu(8); otherwise it doesn't scroll all the way up
+                  listView.contentY = -units.gu(8)
 
                   // go back to previous page
                   pageStack.pop()
@@ -685,8 +685,8 @@ MainView {
                   feedListModel.source = "https://feeds.feedburner.com/nosop3"
                   feedListModel.reload
 
-                  // scroll to top
-                  listView.contentY = 0
+                  // scroll to top; dirty hack -units.gu(8); otherwise it doesn't scroll all the way up
+                  listView.contentY = -units.gu(8)
 
                   // go back to previous page
                   pageStack.pop()
