@@ -1,2 +1,4 @@
 build
 .clickable
+.DS_Store
+qml/.DS_Store

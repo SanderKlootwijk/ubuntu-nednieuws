@@ -1,7 +1,7 @@
 [Desktop Entry]
 _Name=NedNieuws
 Exec=qmlscene %U qml/Main.qml
-Icon=assets/ubuntu-nednieuws.png
+Icon=assets/ubuntu-nednieuws.svg
 Terminal=false
 Type=Application
 X-Ubuntu-Touch=true

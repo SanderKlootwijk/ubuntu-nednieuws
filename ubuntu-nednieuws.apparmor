@@ -1,6 +1,10 @@
 {
     "policy_groups": [
-        "networking"
+        "networking",
+        "webview",
+        "audio",
+        "video",
+        "keep-display-on"
     ],
     "policy_version": 16.04
 }
