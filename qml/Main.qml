@@ -69,7 +69,7 @@ MainView {
     // XmlListModel to fetch news
     XmlListModel {
         id: feedListModel
-        source: "https://feeds.feedburner.com/nosjournaal"
+        source: "https://feeds.feedburner.com/nosnieuwsalgemeen"
         query: "/rss/channel/item"
 
         namespaceDeclarations: "declare namespace dc='http://purl.org/dc/elements/1.1/'; declare namespace content='http://purl.org/rss/1.0/modules/content/';"
@@ -215,11 +215,8 @@ MainView {
                     color: theme.palette.normal.backgroundSecondaryText
 
                     text: {
-                        if (feedListModel.source == "https://feeds.feedburner.com/nosjournaal") {
+                        if (feedListModel.source == "https://feeds.feedburner.com/nosnieuwsalgemeen") {
                             "Algemeen nieuws"
-                        }
-                        else if (feedListModel.source == "https://feeds.feedburner.com/nossportalgemeen") {
-                            "Sportnieuws"
                         }
                         else if (feedListModel.source == "https://feeds.feedburner.com/nosnieuwsbinnenland") {
                             "Binnenland"
@@ -242,8 +239,29 @@ MainView {
                         else if (feedListModel.source == "https://feeds.feedburner.com/nosnieuwscultuurenmedia") {
                             "Cultuur & Media"
                         }
-                        else if (feedListModel.source == "https://feeds.feedburner.com/nosnieuwstechnologie") {
+                        else if (feedListModel.source == "https://feeds.feedburner.com/nosnieuwstech") {
                             "Technologie"
+                        }
+                        else if (feedListModel.source == "https://feeds.feedburner.com/nossportalgemeen") {
+                            "Sportnieuws"
+                        }
+                        else if (feedListModel.source == "https://feeds.feedburner.com/nosvoetbal") {
+                            "Voetbal"
+                        }
+                        else if (feedListModel.source == "https://feeds.feedburner.com/nossportwielrennen") {
+                            "Wielrennen"
+                        }
+                        else if (feedListModel.source == "https://feeds.feedburner.com/nossportschaatsen") {
+                            "Schaatsen"
+                        }
+                        else if  (feedListModel.source == "https://feeds.feedburner.com/nossporttennis") {
+                            "Tennis"
+                        }
+                        else if  (feedListModel.source == "https://feeds.feedburner.com/nossportformule1") {
+                            "Formule-1"
+                        }
+                        else if (feedListModel.source == "https://feeds.feedburner.com/nieuwsuuralgemeen") {
+                            "Nieuwsuur"
                         }
                         else if (feedListModel.source == "https://feeds.feedburner.com/nosop3") {
                             "NOS op 3"
@@ -622,7 +640,7 @@ MainView {
 
                                 onClicked: {
                                     // load new feed
-                                    feedListModel.source = "https://feeds.feedburner.com/nosjournaal"
+                                    feedListModel.source = "https://feeds.feedburner.com/nosnieuwsalgemeen"
                                     feedListModel.reload
 
                                     // go back to previous page
@@ -734,7 +752,7 @@ MainView {
                                 }
                             }
 
-                            // Sport
+                            // Opmerkelijk
                             ListItem {
                                 height: units.gu(6)
 
@@ -745,14 +763,14 @@ MainView {
                                         verticalCenter: parent.verticalCenter
                                     }
 
-                                    text: "Sport"
+                                    text: "Opmerkelijk"
                                     textSize: Label.Medium
                                     wrapMode: Text.WordWrap
                                 }
 
                                 onClicked: {
                                     // load new feed
-                                    feedListModel.source = "https://feeds.feedburner.com/nossportalgemeen"
+                                    feedListModel.source = "https://feeds.feedburner.com/nosnieuwsopmerkelijk"
                                     feedListModel.reload
 
                                     // go back to previous page
@@ -786,32 +804,6 @@ MainView {
                                 }
                             }
 
-                            // Technologie
-                            ListItem {
-                                height: units.gu(6)
-
-                                Label {
-                                    anchors {
-                                        left: parent.left
-                                        leftMargin: units.gu(2)
-                                        verticalCenter: parent.verticalCenter
-                                    }
-
-                                    text: "Technologie"
-                                    textSize: Label.Medium
-                                    wrapMode: Text.WordWrap
-                                }
-
-                                onClicked: {
-                                    // load new feed
-                                    feedListModel.source = "https://feeds.feedburner.com/nosnieuwstech"
-                                    feedListModel.reload
-
-                                    // go back to previous page
-                                    pageStack.pop()
-                                }
-                            }
-
                             // Cultuur & Media
                             ListItem {
                                 height: units.gu(6)
@@ -838,7 +830,7 @@ MainView {
                                 }
                             }
 
-                            // Opmerkelijk
+                            // Technologie
                             ListItem {
                                 height: units.gu(6)
 
@@ -849,14 +841,196 @@ MainView {
                                         verticalCenter: parent.verticalCenter
                                     }
 
-                                    text: "Opmerkelijk"
+                                    text: "Technologie"
                                     textSize: Label.Medium
                                     wrapMode: Text.WordWrap
                                 }
 
                                 onClicked: {
                                     // load new feed
-                                    feedListModel.source = "https://feeds.feedburner.com/nosnieuwsopmerkelijk"
+                                    feedListModel.source = "https://feeds.feedburner.com/nosnieuwstech"
+                                    feedListModel.reload
+
+                                    // go back to previous page
+                                    pageStack.pop()
+                                }
+                            }
+
+                            // Sport
+                            ListItem {
+                                height: units.gu(6)
+
+                                Label {
+                                    anchors {
+                                        left: parent.left
+                                        leftMargin: units.gu(2)
+                                        verticalCenter: parent.verticalCenter
+                                    }
+
+                                    text: "Sport"
+                                    textSize: Label.Medium
+                                    wrapMode: Text.WordWrap
+                                }
+
+                                onClicked: {
+                                    // load new feed
+                                    feedListModel.source = "https://feeds.feedburner.com/nossportalgemeen"
+                                    feedListModel.reload
+
+                                    // go back to previous page
+                                    pageStack.pop()
+                                }
+                            }
+
+                            // Voetbal
+                            ListItem {
+                                height: units.gu(6)
+
+                                Label {
+                                    anchors {
+                                        left: parent.left
+                                        leftMargin: units.gu(2)
+                                        verticalCenter: parent.verticalCenter
+                                    }
+
+                                    text: "Voetbal"
+                                    textSize: Label.Medium
+                                    wrapMode: Text.WordWrap
+                                }
+
+                                onClicked: {
+                                    // load new feed
+                                    feedListModel.source = "https://feeds.feedburner.com/nosvoetbal"
+                                    feedListModel.reload
+
+                                    // go back to previous page
+                                    pageStack.pop()
+                                }
+                            }
+
+                            // Wielrennen
+                            ListItem {
+                                height: units.gu(6)
+
+                                Label {
+                                    anchors {
+                                        left: parent.left
+                                        leftMargin: units.gu(2)
+                                        verticalCenter: parent.verticalCenter
+                                    }
+
+                                    text: "Wielrennen"
+                                    textSize: Label.Medium
+                                    wrapMode: Text.WordWrap
+                                }
+
+                                onClicked: {
+                                    // load new feed
+                                    feedListModel.source = "https://feeds.feedburner.com/nossportwielrennen"
+                                    feedListModel.reload
+
+                                    // go back to previous page
+                                    pageStack.pop()
+                                }
+                            }
+
+                            // Schaatsen
+                            ListItem {
+                                height: units.gu(6)
+
+                                Label {
+                                    anchors {
+                                        left: parent.left
+                                        leftMargin: units.gu(2)
+                                        verticalCenter: parent.verticalCenter
+                                    }
+
+                                    text: "Schaatsen"
+                                    textSize: Label.Medium
+                                    wrapMode: Text.WordWrap
+                                }
+
+                                onClicked: {
+                                    // load new feed
+                                    feedListModel.source = "https://feeds.feedburner.com/nossportschaatsen"
+                                    feedListModel.reload
+
+                                    // go back to previous page
+                                    pageStack.pop()
+                                }
+                            }
+
+                            // Tennis
+                            ListItem {
+                                height: units.gu(6)
+
+                                Label {
+                                    anchors {
+                                        left: parent.left
+                                        leftMargin: units.gu(2)
+                                        verticalCenter: parent.verticalCenter
+                                    }
+
+                                    text: "Tennis"
+                                    textSize: Label.Medium
+                                    wrapMode: Text.WordWrap
+                                }
+
+                                onClicked: {
+                                    // load new feed
+                                    feedListModel.source = "https://feeds.feedburner.com/nossporttennis"
+                                    feedListModel.reload
+
+                                    // go back to previous page
+                                    pageStack.pop()
+                                }
+                            }
+
+                            // Formule-1
+                            ListItem {
+                                height: units.gu(6)
+
+                                Label {
+                                    anchors {
+                                        left: parent.left
+                                        leftMargin: units.gu(2)
+                                        verticalCenter: parent.verticalCenter
+                                    }
+
+                                    text: "Formule-1"
+                                    textSize: Label.Medium
+                                    wrapMode: Text.WordWrap
+                                }
+
+                                onClicked: {
+                                    // load new feed
+                                    feedListModel.source = "https://feeds.feedburner.com/nossportformule1"
+                                    feedListModel.reload
+
+                                    // go back to previous page
+                                    pageStack.pop()
+                                }
+                            }
+
+                            // Nieuwsuur
+                            ListItem {
+                                height: units.gu(6)
+
+                                Label {
+                                    anchors {
+                                        left: parent.left
+                                        leftMargin: units.gu(2)
+                                        verticalCenter: parent.verticalCenter
+                                    }
+
+                                    text: "Nieuwsuur"
+                                    textSize: Label.Medium
+                                    wrapMode: Text.WordWrap
+                                }
+
+                                onClicked: {
+                                    // load new feed
+                                    feedListModel.source = "https://feeds.feedburner.com/nieuwsuuralgemeen"
                                     feedListModel.reload
 
                                     // go back to previous page
