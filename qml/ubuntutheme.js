@@ -1,5 +1,5 @@
 (function() {
-var css = "* {\nfont-family: \"Ubuntu\" !important;} \n\n\n @media all and (min-width: 760) { div[class^='content'] {\nfont-size: 16px !important;} } \n\n\n nav {\ndisplay: none !important;}  \n\n\n 	footer {\ndisplay: none !important;}  \n\n\n .container_1UEFCPoS {\ndisplay: none !important;}  \n\n\n button[class^='notificationButton'] {\ndisplay: none !important;} \n\n\n #ccm_col_content_regular {\ndisplay: none !important;} \n\n\n #ccm_notification {\ndisplay: none !important;} \n\n\n section[class^='sterBanner'] {\ndisplay: none !important;} \n\n\n \n\n\n\n\n\n"
+var css = "* {\nfont-family: \"Ubuntu\" !important;} \n\n\n @media all and (min-width: 760) { div[class^='content'] {\nfont-size: 16px !important;} } \n\n\n nav {\ndisplay: none !important;}  \n\n\n 	footer {\ndisplay: none !important;}  \n\n\n .hIVSHa {\ndisplay: none !important;}  \n\n\n .container_1UEFCPoS {\ndisplay: none !important;}  \n\n\n button[class^='notificationButton'] {\ndisplay: none !important;} \n\n\n #ccm_col_content_regular {\ndisplay: none !important;} \n\n\n #ccm_notification {\ndisplay: none !important;} \n\n\n section[class^='sterBanner'] {\ndisplay: none !important;} \n\n\n #sterad-container {\ndisplay: none !important;} \n\n\n .jIWxco {\ndisplay: none !important;} \n\n\n\n\n\n"
 
 
 ;

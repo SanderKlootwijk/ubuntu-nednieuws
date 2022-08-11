@@ -35,7 +35,7 @@ ListItem {
                 units.gu(81)
             }
             else {
-                parent.width - units.gu(2)
+                parent.width - units.gu(4)
             }
         }
 
@@ -90,17 +90,9 @@ ListItem {
     }
 
     onClicked: {
-        //first scroll to top
-        //columnFlickable.contentY = 0
-        //then add new information
         articleWebView.opacity = 0
         articleWebView.stop()
         articleWebView.url = link
-        //articleTitle.text = title
-        //articleDate.text = pubDate
-        //articleImage.source = image
-        //articleURL.text = link
-        //articleContent.text = '<font color="' + theme.palette.normal.baseText + '">' + content + '<br>&nbsp;<br>&nbsp;> </font><a href="' + link + '"><font color="#19b6ee">Open dit artikel in uw browser</font></a>'
         pageStack.push(articlePage)
     }
 }

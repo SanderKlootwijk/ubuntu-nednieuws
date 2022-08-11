@@ -39,24 +39,24 @@ Component {
             onSelectedIndexChanged: {
                 switch(selector.selectedIndex) {
                 case 0: {
-                    articleWebView.zoomFactor = units.dp(1.0)
-                    settings.zoomFactor = units.dp(1.0)
+                    articleWebView.zoomFactor = 0.75
+                    settings.zoomFactor = 0.75
                     settings.selectedIndex = 0
-                    articleWebView.zoomFactor = units.dp(1.0)
+                    articleWebView.zoomFactor = 0.75
                     break;
                 }
                 case 1: {
-                    articleWebView.zoomFactor = units.dp(1.5)
-                    settings.zoomFactor = units.dp(1.5)
+                    articleWebView.zoomFactor = 1.0
+                    settings.zoomFactor = 1.0
                     settings.selectedIndex = 1
-                    articleWebView.zoomFactor = units.dp(1.5)
+                    articleWebView.zoomFactor = 1.0
                     break;
                 }
                 case 2: {
-                    articleWebView.zoomFactor = units.dp(2.0)
-                    settings.zoomFactor = units.dp(2.0)
+                    articleWebView.zoomFactor = 1.25
+                    settings.zoomFactor = 1.25
                     settings.selectedIndex = 2
-                    articleWebView.zoomFactor = units.dp(2.0)
+                    articleWebView.zoomFactor = 1.25
                     break;
                 }
                 }

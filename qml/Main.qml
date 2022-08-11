@@ -38,7 +38,7 @@ MainView {
         id: settings
         property string theme: "Ambiance"
         property int selectedIndex: 1
-        property int zoomFactor: units.dp(1.5)
+        property int zoomFactor: 1.0
     }
 
     // Screensaver
@@ -93,191 +93,154 @@ MainView {
             anchors.fill: parent
 
             // No-connection message
-    Item {
-        z: 3
+            Item {
+                z: 3
 
-        id: connectionMessage
+                id: connectionMessage
 
-        anchors.fill: parent
+                anchors.fill: parent
 
-        opacity: 0
+                opacity: 0
 
-        Timer {
-            id: opacityTimer
-            interval: 1000; running: false; repeat: false
-            onTriggered: connectionMessage.opacity = 1
-        }
-
-        anchors {
-            horizontalCenter: parent.horizontalCenter
-            verticalCenter: parent.verticalCenter
-        }
-
-        visible: {
-            if (listView.count == "0") {
-                true
-            }
-            else {
-                false
-            }
-        }
-
-        // Prevent user from using pull-to-refresh while no connection message is displayed
-        MouseArea {
-            z: 3
-            anchors.fill: parent
-            anchors.topMargin: units.gu(6)
-        }
-
-        Label {
-            id: loadinglabel1
-            anchors.centerIn: parent
-            font.bold: true
-
-            text: "Laden mislukt"
-        }
-
-        Label {
-            id: loadinglabel2
-            anchors {
-                horizontalCenter: parent.horizontalCenter
-                top: loadinglabel1.bottom
-                topMargin: units.gu(0.5)
-            }
-
-            text: "Het nieuws kan nu niet worden bijgewerkt"
-        }
-
-        Label {
-            id: loadinglabel3
-            anchors {
-                horizontalCenter: parent.horizontalCenter
-                top: loadinglabel2.bottom
-                topMargin: units.gu(1.5)
-            }
-            font.underline: true
-
-            text: "Probeer opnieuw"
-        }
-
-        MouseArea {
-                z: 4
-                
-                width: loadinglabel3.width + units.gu(2)
-                height: loadinglabel3.height + units.gu(2)
-
-                anchors.centerIn: loadinglabel3
-
-                onClicked: {
-                    // reload feed
-                    feedListModel.reload
-
-                    // reload listview
-                    listView.model.reload()
-
-                    // hack: adjust listview height
-                    listView.height = page.height - units.gu(8.5)
+                Timer {
+                    id: opacityTimer
+                    interval: 1000; running: false; repeat: false
+                    onTriggered: connectionMessage.opacity = 1
                 }
+
+                anchors {
+                    horizontalCenter: parent.horizontalCenter
+                    verticalCenter: parent.verticalCenter
+                }
+
+                visible: {
+                    if (listView.count == "0") {
+                        true
+                    }
+                    else {
+                        false
+                    }
+                }
+
+                // Prevent user from using pull-to-refresh while no connection message is displayed
+                MouseArea {
+                    z: 3
+                    anchors.fill: parent
+                    anchors.topMargin: units.gu(6)
+                }
+
+                Label {
+                    id: loadinglabel1
+                    anchors.centerIn: parent
+                    font.bold: true
+
+                    text: "Laden mislukt"
+                }
+
+                Label {
+                    id: loadinglabel2
+                    anchors {
+                        horizontalCenter: parent.horizontalCenter
+                        top: loadinglabel1.bottom
+                        topMargin: units.gu(0.5)
+                    }
+
+                    text: "Het nieuws kan nu niet worden bijgewerkt"
+                }
+
+                Label {
+                    id: loadinglabel3
+                    anchors {
+                        horizontalCenter: parent.horizontalCenter
+                        top: loadinglabel2.bottom
+                        topMargin: units.gu(1.5)
+                    }
+                    font.underline: true
+
+                    text: "Probeer opnieuw"
+                }
+
+                MouseArea {
+                        z: 4
+                        
+                        width: loadinglabel3.width + units.gu(2)
+                        height: loadinglabel3.height + units.gu(2)
+
+                        anchors.centerIn: loadinglabel3
+
+                        onClicked: {
+                            // reload feed
+                            feedListModel.reload
+
+                            // reload listview
+                            listView.model.reload()
+                        }
+                    }
             }
-    }
 
             header: PageHeader {
                 z: 1
                 id: pageHeader
                 height: units.gu(8.5)
 
-                Label {
-                    id: title
-                    anchors {
-                        left: parent.left
-                        top: parent.top
-                        leftMargin: units.gu(2)
-                        topMargin: units.gu(1.6)
+                title: "NedNieuws"
+
+                // Adjust page subtitle to current feed
+                subtitle: {
+                    if (feedListModel.source == "https://feeds.feedburner.com/nosnieuwsalgemeen") {
+                        "Algemeen nieuws"
                     }
-
-                    textSize: Label.Large
-
-                    text: "NedNieuws"
-                }
-
-                // Adjust page subTitle to current feed
-                Label {
-                    id: subTitle
-                    anchors {
-                        left: parent.left
-                        top: title.bottom
-                        leftMargin: units.gu(2)
-                        topMargin: units.gu(0.5)
+                    else if (feedListModel.source == "https://feeds.feedburner.com/nosnieuwsbinnenland") {
+                        "Binnenland"
                     }
-
-                    textSize: Label.Medium
-
-                    color: theme.palette.normal.backgroundSecondaryText
-
-                    text: {
-                        if (feedListModel.source == "https://feeds.feedburner.com/nosnieuwsalgemeen") {
-                            "Algemeen nieuws"
-                        }
-                        else if (feedListModel.source == "https://feeds.feedburner.com/nosnieuwsbinnenland") {
-                            "Binnenland"
-                        }
-                        else if (feedListModel.source == "https://feeds.feedburner.com/nosnieuwsbuitenland") {
-                            "Buitenland"
-                        }
-                        else if (feedListModel.source == "https://feeds.feedburner.com/nosnieuwspolitiek") {
-                            "Politiek"
-                        }
-                        else if (feedListModel.source == "https://feeds.feedburner.com/nosnieuwseconomie") {
-                            "Economie"
-                        }
-                        else if (feedListModel.source == "https://feeds.feedburner.com/nosnieuwsopmerkelijk") {
-                            "Opmerkelijk"
-                        }
-                        else if (feedListModel.source == "https://feeds.feedburner.com/nosnieuwskoningshuis") {
-                            "Koningshuis"
-                        }
-                        else if (feedListModel.source == "https://feeds.feedburner.com/nosnieuwscultuurenmedia") {
-                            "Cultuur & Media"
-                        }
-                        else if (feedListModel.source == "https://feeds.feedburner.com/nosnieuwstech") {
-                            "Technologie"
-                        }
-                        else if (feedListModel.source == "https://feeds.feedburner.com/nossportalgemeen") {
-                            "Sportnieuws"
-                        }
-                        else if (feedListModel.source == "https://feeds.feedburner.com/nosvoetbal") {
-                            "Voetbal"
-                        }
-                        else if (feedListModel.source == "https://feeds.feedburner.com/nossportwielrennen") {
-                            "Wielrennen"
-                        }
-                        else if (feedListModel.source == "https://feeds.feedburner.com/nossportschaatsen") {
-                            "Schaatsen"
-                        }
-                        else if  (feedListModel.source == "https://feeds.feedburner.com/nossporttennis") {
-                            "Tennis"
-                        }
-                        else if  (feedListModel.source == "https://feeds.feedburner.com/nossportformule1") {
-                            "Formule-1"
-                        }
-                        else if (feedListModel.source == "https://feeds.feedburner.com/nieuwsuuralgemeen") {
-                            "Nieuwsuur"
-                        }
-                        else if (feedListModel.source == "https://feeds.feedburner.com/nosop3") {
-                            "NOS op 3"
-                        }
+                    else if (feedListModel.source == "https://feeds.feedburner.com/nosnieuwsbuitenland") {
+                        "Buitenland"
+                    }
+                    else if (feedListModel.source == "https://feeds.feedburner.com/nosnieuwspolitiek") {
+                        "Politiek"
+                    }
+                    else if (feedListModel.source == "https://feeds.feedburner.com/nosnieuwseconomie") {
+                        "Economie"
+                    }
+                    else if (feedListModel.source == "https://feeds.feedburner.com/nosnieuwsopmerkelijk") {
+                        "Opmerkelijk"
+                    }
+                    else if (feedListModel.source == "https://feeds.feedburner.com/nosnieuwskoningshuis") {
+                        "Koningshuis"
+                    }
+                    else if (feedListModel.source == "https://feeds.feedburner.com/nosnieuwscultuurenmedia") {
+                        "Cultuur & Media"
+                    }
+                    else if (feedListModel.source == "https://feeds.feedburner.com/nosnieuwstech") {
+                        "Technologie"
+                    }
+                    else if (feedListModel.source == "https://feeds.feedburner.com/nossportalgemeen") {
+                        "Sportnieuws"
+                    }
+                    else if (feedListModel.source == "https://feeds.feedburner.com/nosvoetbal") {
+                        "Voetbal"
+                    }
+                    else if (feedListModel.source == "https://feeds.feedburner.com/nossportwielrennen") {
+                        "Wielrennen"
+                    }
+                    else if (feedListModel.source == "https://feeds.feedburner.com/nossportschaatsen") {
+                        "Schaatsen"
+                    }
+                    else if  (feedListModel.source == "https://feeds.feedburner.com/nossporttennis") {
+                        "Tennis"
+                    }
+                    else if  (feedListModel.source == "https://feeds.feedburner.com/nossportformule1") {
+                        "Formule-1"
+                    }
+                    else if (feedListModel.source == "https://feeds.feedburner.com/nieuwsuuralgemeen") {
+                        "Nieuwsuur"
+                    }
+                    else if (feedListModel.source == "https://feeds.feedburner.com/nosop3") {
+                        "NOS op 3"
                     }
                 }
 
-                ActionBar {
-                    height: units.gu(7.9)
-
-                    anchors {
-                        right: parent.right
-                        rightMargin: units.gu(1)
-                        verticalCenter: parent.verticalCenter
-                    }
-
+                trailingActionBar {
                     numberOfSlots: 1
 
                     actions: [
@@ -333,12 +296,8 @@ MainView {
             ListView {
                 id: listView
 
-                width: parent.width
-                height: parent.height
-
                 anchors {
-                    horizontalCenter: parent.horizontalCenter
-                    bottom: parent.bottom
+                    fill: parent
                 }
 
                 // Scrollbar for listView
@@ -361,9 +320,6 @@ MainView {
 
                     // reload listview
                     listView.model.reload()
-
-                    // hack: adjust listview height
-                    listView.height = page.height - units.gu(8.5)
                 }
                 else {
                     listView.model.reload()
@@ -381,6 +337,27 @@ MainView {
                     z: 2
                     id: articlePageHeader
                     title: pageHeader.title
+
+                    leadingActionBar.actions: [
+                        Action {
+                            iconName: "back"
+                            text: "Terug"
+                            onTriggered: {
+                                if (articleWebView.canGoBack == true) {
+                                    articleWebView.goBack()
+                                }
+                                else if (webViewTimer.running == true) {
+                                    pageStack.pop()
+                                }
+                                else if (opacityDelayTimer.running == true) {
+                                    pageStack.pop()
+                                }
+                                else {
+                                    pageStack.pop()
+                                }
+                            }
+                        }
+                    ]
 
                     trailingActionBar.actions: [
                         Action {
@@ -494,9 +471,11 @@ MainView {
                         interval: 10; running: false; repeat: false
                         onTriggered: {
                             if (articleWebViewLoadProgress.text == "100") {
+                                articleWebView.navigationHistory.clear()
                                 opacityDelayTimer.start()
                             }
                             else {
+                                articleWebView.navigationHistory.clear()
                                 webViewTimer.start()
                             }
                         }
@@ -505,10 +484,13 @@ MainView {
                     Timer {
                         id: opacityDelayTimer
                         interval: 500; running: false; repeat: false
-                        onTriggered: articleWebView.opacity = 1
+                        onTriggered: {
+                            articleWebView.navigationHistory.clear()
+                            articleWebView.opacity = 1
+                        }
                     }
 
-                    zoomFactor: units.dp(1.5)
+                    zoomFactor: 1.0
 
                     profile:  WebEngineProfile {
                         id: webContext
@@ -643,6 +625,9 @@ MainView {
                                     feedListModel.source = "https://feeds.feedburner.com/nosnieuwsalgemeen"
                                     feedListModel.reload
 
+                                    // scroll listview to top
+                                    listView.contentY = - units.gu(10)
+
                                     // go back to previous page
                                     pageStack.pop()
                                 }
@@ -668,6 +653,9 @@ MainView {
                                     // load new feed
                                     feedListModel.source = "https://feeds.feedburner.com/nosnieuwsbinnenland"
                                     feedListModel.reload
+
+                                    // scroll listview to top
+                                    listView.contentY = - units.gu(10)
 
                                     // go back to previous page
                                     pageStack.pop()
@@ -695,6 +683,9 @@ MainView {
                                     feedListModel.source = "https://feeds.feedburner.com/nosnieuwsbuitenland"
                                     feedListModel.reload
 
+                                    // scroll listview to top
+                                    listView.contentY = - units.gu(10)
+
                                     // go back to previous page
                                     pageStack.pop()
                                 }
@@ -720,6 +711,9 @@ MainView {
                                     // load new feed
                                     feedListModel.source = "https://feeds.feedburner.com/nosnieuwspolitiek"
                                     feedListModel.reload
+
+                                    // scroll listview to top
+                                    listView.contentY = - units.gu(10)
 
                                     // go back to previous page
                                     pageStack.pop()
@@ -747,6 +741,9 @@ MainView {
                                     feedListModel.source = "https://feeds.feedburner.com/nosnieuwseconomie"
                                     feedListModel.reload
 
+                                    // scroll listview to top
+                                    listView.contentY = - units.gu(10)
+
                                     // go back to previous page
                                     pageStack.pop()
                                 }
@@ -772,6 +769,9 @@ MainView {
                                     // load new feed
                                     feedListModel.source = "https://feeds.feedburner.com/nosnieuwsopmerkelijk"
                                     feedListModel.reload
+
+                                    // scroll listview to top
+                                    listView.contentY = - units.gu(10)
 
                                     // go back to previous page
                                     pageStack.pop()
@@ -799,6 +799,9 @@ MainView {
                                     feedListModel.source = "https://feeds.feedburner.com/nosnieuwskoningshuis"
                                     feedListModel.reload
 
+                                    // scroll listview to top
+                                    listView.contentY = - units.gu(10)
+
                                     // go back to previous page
                                     pageStack.pop()
                                 }
@@ -824,6 +827,9 @@ MainView {
                                     // load new feed
                                     feedListModel.source = "https://feeds.feedburner.com/nosnieuwscultuurenmedia"
                                     feedListModel.reload
+
+                                    // scroll listview to top
+                                    listView.contentY = - units.gu(10)
 
                                     // go back to previous page
                                     pageStack.pop()
@@ -851,6 +857,9 @@ MainView {
                                     feedListModel.source = "https://feeds.feedburner.com/nosnieuwstech"
                                     feedListModel.reload
 
+                                    // scroll listview to top
+                                    listView.contentY = - units.gu(10)
+
                                     // go back to previous page
                                     pageStack.pop()
                                 }
@@ -876,6 +885,9 @@ MainView {
                                     // load new feed
                                     feedListModel.source = "https://feeds.feedburner.com/nossportalgemeen"
                                     feedListModel.reload
+
+                                    // scroll listview to top
+                                    listView.contentY = - units.gu(10)
 
                                     // go back to previous page
                                     pageStack.pop()
@@ -903,6 +915,9 @@ MainView {
                                     feedListModel.source = "https://feeds.feedburner.com/nosvoetbal"
                                     feedListModel.reload
 
+                                    // scroll listview to top
+                                    listView.contentY = - units.gu(10)
+
                                     // go back to previous page
                                     pageStack.pop()
                                 }
@@ -928,6 +943,9 @@ MainView {
                                     // load new feed
                                     feedListModel.source = "https://feeds.feedburner.com/nossportwielrennen"
                                     feedListModel.reload
+
+                                    // scroll listview to top
+                                    listView.contentY = - units.gu(10)
 
                                     // go back to previous page
                                     pageStack.pop()
@@ -955,6 +973,9 @@ MainView {
                                     feedListModel.source = "https://feeds.feedburner.com/nossportschaatsen"
                                     feedListModel.reload
 
+                                    // scroll listview to top
+                                    listView.contentY = - units.gu(10)
+
                                     // go back to previous page
                                     pageStack.pop()
                                 }
@@ -980,6 +1001,9 @@ MainView {
                                     // load new feed
                                     feedListModel.source = "https://feeds.feedburner.com/nossporttennis"
                                     feedListModel.reload
+
+                                    // scroll listview to top
+                                    listView.contentY = - units.gu(10)
 
                                     // go back to previous page
                                     pageStack.pop()
@@ -1007,6 +1031,9 @@ MainView {
                                     feedListModel.source = "https://feeds.feedburner.com/nossportformule1"
                                     feedListModel.reload
 
+                                    // scroll listview to top
+                                    listView.contentY = - units.gu(10)
+
                                     // go back to previous page
                                     pageStack.pop()
                                 }
@@ -1033,6 +1060,9 @@ MainView {
                                     feedListModel.source = "https://feeds.feedburner.com/nieuwsuuralgemeen"
                                     feedListModel.reload
 
+                                    // scroll listview to top
+                                    listView.contentY = - units.gu(10)
+
                                     // go back to previous page
                                     pageStack.pop()
                                 }
@@ -1058,6 +1088,9 @@ MainView {
                                     // load new feed
                                     feedListModel.source = "https://feeds.feedburner.com/nosop3"
                                     feedListModel.reload
+
+                                    // scroll listview to top
+                                    listView.contentY = - units.gu(10)
 
                                     // go back to previous page
                                     pageStack.pop()
