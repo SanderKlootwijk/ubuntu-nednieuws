@@ -16,7 +16,7 @@ MainView {
 
     property alias settings: settings
     property string categoryName: "Algemeen"
-    property string version: "2.3"
+    property string version: "2.3.1"
 
     Settings {
         id: settings
