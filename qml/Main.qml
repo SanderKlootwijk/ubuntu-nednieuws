@@ -18,16 +18,21 @@ MainView {
     property string categoryName: "Algemeen"
     property string version: "2.3.2"
 
+    theme.name: {
+        switch (settings.theme) {
+            case 0: return "";
+            case 1: return "Lomiri.Components.Themes.Ambiance";
+            case 2: return "Lomiri.Components.Themes.SuruDark";
+            default: return "";
+        }
+    }
+
     Settings {
         id: settings
 
-        property bool darkMode: false
+        property int theme: 0
         property int selectedIndex: 1
         property real zoomFactor: 1.0
-
-        onDarkModeChanged: Theme.name = darkMode ? "Lomiri.Components.Themes.SuruDark" : "Lomiri.Components.Themes.Ambiance"
-
-        Component.onCompleted: Theme.name = darkMode ? "Lomiri.Components.Themes.SuruDark" : "Lomiri.Components.Themes.Ambiance"
     }
 
     ScreenSaver {
@@ -66,6 +71,12 @@ MainView {
 
         ArticlePage {
             id: articlePage
+
+            visible: false
+        }
+
+        SettingsPage {
+            id: settingsPage
 
             visible: false
         }

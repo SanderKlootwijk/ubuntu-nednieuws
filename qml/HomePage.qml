@@ -23,19 +23,14 @@ Page {
 
             actions: [
                 Action {
+                    text: "Instellingen"
+                    iconName: "settings"
+                    onTriggered: pageStack.push(settingsPage)
+                },
+                Action {
                     text: "Categorieën"
                     iconName: "tag"
                     onTriggered: pageStack.push(categoryPage)
-                },
-                Action {
-                    text: settings.darkMode ? "Dagmodus" : "Nachtmodus"
-                    iconSource: settings.darkMode ? "img/day-mode.svg" : "img/night-mode.svg"
-                    onTriggered: settings.darkMode ? settings.darkMode = false : settings.darkMode = true
-                },
-                Action {
-                    text: "Over"
-                    iconName: "info"
-                    onTriggered: pageStack.push(aboutPage)
                 }
             ]
         }

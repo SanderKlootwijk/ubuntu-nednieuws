@@ -22,7 +22,7 @@ ListItem {
             verticalCenter: parent.verticalCenter
         }
 
-        source: settings.darkMode ? "../img/dark/" + categoryLabel.text + ".svg" : "../img/light/" + categoryLabel.text + ".svg"
+        source: theme.name == "Lomiri.Components.Themes.SuruDark" ? "../img/dark/" + categoryLabel.text + ".svg" : "../img/light/" + categoryLabel.text + ".svg"
     }
 
     Label {
