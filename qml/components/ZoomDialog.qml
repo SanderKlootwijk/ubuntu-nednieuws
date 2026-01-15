@@ -28,24 +28,18 @@ Component {
             onSelectedIndexChanged: {
                 switch(selector.selectedIndex) {
                     case 0: {
-                        articleWebView.zoomFactor = 0.75
                         settings.zoomFactor = 0.75
                         settings.selectedIndex = 0
-                        articleWebView.zoomFactor = 0.75
                         break;
                     }
                     case 1: {
-                        articleWebView.zoomFactor = 1.0
                         settings.zoomFactor = 1.0
                         settings.selectedIndex = 1
-                        articleWebView.zoomFactor = 1.0
                         break;
                     }
                     case 2: {
-                        articleWebView.zoomFactor = 1.25
                         settings.zoomFactor = 1.25
                         settings.selectedIndex = 2
-                        articleWebView.zoomFactor = 1.25
                         break;
                     }
                 }

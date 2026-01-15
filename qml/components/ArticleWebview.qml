@@ -50,7 +50,7 @@ WebEngineView {
         delegate: Item {}
     }
 
-    zoomFactor: root.settings.zoomFactor
+    zoomFactor: (units.gu(1) / 8) * root.settings.zoomFactor
 
     profile:  WebEngineProfile {
         id: webContext

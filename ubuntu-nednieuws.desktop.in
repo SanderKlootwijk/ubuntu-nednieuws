@@ -1,6 +1,6 @@
 [Desktop Entry]
 _Name=NedNieuws
-Exec=qmlscene %U qml/Main.qml --scaling
+Exec=qmlscene %U qml/Main.qml
 Icon=assets/ubuntu-nednieuws.svg
 Terminal=false
 Type=Application
