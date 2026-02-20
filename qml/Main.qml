@@ -31,8 +31,12 @@ MainView {
         id: settings
 
         property int theme: 0
-        property int selectedIndex: 1
+        property int selectedZoomIndex: 1
+        property int selectedFontIndex: 0
         property real zoomFactor: 1.0
+        property string fontType: "Ubuntu"
+
+        onSelectedFontIndexChanged: articlePage.articleWebView.reload()
     }
 
     ScreenSaver {

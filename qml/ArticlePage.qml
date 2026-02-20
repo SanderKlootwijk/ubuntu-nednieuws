@@ -67,7 +67,7 @@ Page {
                 }
                 text: "Tekstgrootte"
                 iconSource: "img/font-size.svg"
-                onTriggered: PopupUtils.open(zoomDialog)
+                onTriggered: PopupUtils.open(fontDialog)
             }
         ]
     }
@@ -124,7 +124,7 @@ Page {
         }
     }
 
-    ZoomDialog {
-        id: zoomDialog
+    FontDialog {
+        id: fontDialog
     }
 }
