@@ -62,7 +62,7 @@ WebEngineView {
             WebEngineScript {
                 id: cssinjection
                 injectionPoint: WebEngineScript.DocumentReady
-                sourceUrl: theme.name == "Lomiri.Components.Themes.SuruDark" ? Qt.resolvedUrl('../js/ubuntuthemesurudark.js') : Qt.resolvedUrl('../js/ubuntutheme.js')
+                sourceUrl: Qt.resolvedUrl('../js/ubuntutheme.js') // theme.name == "Lomiri.Components.Themes.SuruDark" ? Qt.resolvedUrl('../js/ubuntuthemesurudark.js') : Qt.resolvedUrl('../js/ubuntutheme.js')
                 worldId: WebEngineScript.UserWorld
             }
         ]
